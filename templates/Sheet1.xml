@@ -1,0 +1,350 @@
+<gmi:MI_Metadata xmlns:gmi="http://www.isotc211.org/2005/gmi" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <gmd:fileIdentifier xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <!-- Metadata Identification Identifier  (MI_I)-->
+  <gco:CharacterString>%%MI_I%%</gco:CharacterString>
+ </gmd:fileIdentifier>
+ <gmd:language xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gmd:LanguageCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#LanguageCode" codeListValue="eng">eng</gmd:LanguageCode>
+ </gmd:language>
+ <gmd:hierarchyLevel xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="series">series</gmd:MD_ScopeCode>
+ </gmd:hierarchyLevel>
+ <gmd:contact xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gmd:CI_ResponsibleParty>
+   <gmd:organisationName>
+    <gco:CharacterString>%%OI_ONS%%</gco:CharacterString>
+   </gmd:organisationName>
+   <gmd:positionName>
+    <gco:CharacterString>Earth Observation helpdesk</gco:CharacterString>
+   </gmd:positionName>
+   <gmd:contactInfo>
+    <gmd:CI_Contact>
+     <gmd:phone>
+      <gmd:CI_Telephone>
+       <gmd:voice>
+        <gco:CharacterString>%%OI_PH%%</gco:CharacterString>
+       </gmd:voice>
+       <gmd:facsimile>
+        <gco:CharacterString>%%OI_F%%</gco:CharacterString>
+       </gmd:facsimile>
+      </gmd:CI_Telephone>
+     </gmd:phone>
+     <gmd:address>
+      <gmd:CI_Address>
+       <gmd:deliveryPoint>
+        <gco:CharacterString>%%OI_A%%</gco:CharacterString>
+       </gmd:deliveryPoint>
+       <gmd:city>
+        <gco:CharacterString>%%OI_CI%%</gco:CharacterString>
+       </gmd:city>
+       <gmd:postalCode>
+        <gco:CharacterString>%%OI_PO%%</gco:CharacterString>
+       </gmd:postalCode>
+       <gmd:country>
+        <gco:CharacterString>%%OI_CO%%</gco:CharacterString>
+       </gmd:country>
+       <gmd:electronicMailAddress>
+        <gco:CharacterString>%%OI__E%%</gco:CharacterString>
+       </gmd:electronicMailAddress>
+      </gmd:CI_Address>
+     </gmd:address>
+     <gmd:onlineResource>
+      <gmd:CI_OnlineResource>
+       <gmd:linkage>
+        <gmd:URL>%%OI_U%%</gmd:URL>
+       </gmd:linkage>
+      </gmd:CI_OnlineResource>
+     </gmd:onlineResource>
+    </gmd:CI_Contact>
+   </gmd:contactInfo>
+   <role xmlns="http://www.isotc211.org/2005/gmd">
+    <gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
+   </role>
+  </gmd:CI_ResponsibleParty>
+ </gmd:contact>
+ <!-- Metadata Identification Last update date  (MI_UD)-->
+ <gmd:dateStamp xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gco:Date>%%MI_UD%%</gco:Date>
+ </gmd:dateStamp>
+ <gmd:metadataStandardName xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gco:CharacterString>ISO19115</gco:CharacterString>
+ </gmd:metadataStandardName>
+ <gmd:metadataStandardVersion xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gco:CharacterString>2005/Cor.1:2006</gco:CharacterString>
+ </gmd:metadataStandardVersion>
+ <gmd:identificationInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gmd:MD_DataIdentification>
+   <gmd:citation>
+    <gmd:CI_Citation>
+     <!-- Metadata Identification Title (MI_T) -->
+    %%MI_T%%
+     <!-- Metadata Identification Alternate Title (MI_AT) -->
+	%%MI_AT%%
+     <gmd:date>
+      <gmd:CI_Date>
+       <!-- Metadata Identification Creation Date  (MI_CD)-->
+       <gmd:date>
+        <gco:Date>%%MI_CD%%</gco:Date>
+       </gmd:date>
+       <gmd:dateType>
+        <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+       </gmd:dateType>
+      </gmd:CI_Date>
+     </gmd:date>
+     <!-- Metadata Identification DOI or, if no DOI (MI_D),   Metadata Identification Identifier (MI_I) -->
+     <gmd:identifier>
+      <gmd:RS_Identifier>
+       %%MI_D%%
+       <gmd:codeSpace>
+        <gco:CharacterString>%%OI_U%%</gco:CharacterString>
+       </gmd:codeSpace>
+      </gmd:RS_Identifier>
+     </gmd:identifier>
+    </gmd:CI_Citation>
+   </gmd:citation>
+   <!-- Metadata Identification abstract (MI_UD)-->
+   <gmd:abstract>
+    <gco:CharacterString>%%MI_AB%%</gco:CharacterString>
+   </gmd:abstract>
+   <gmd:pointOfContact>
+    <gmd:CI_ResponsibleParty>
+     <gmd:organisationName>
+      <gco:CharacterString>%%OI_ONS%%</gco:CharacterString>
+     </gmd:organisationName>
+     <gmd:positionName>
+      <gco:CharacterString>Earth Observation helpdesk</gco:CharacterString>
+     </gmd:positionName>
+     <gmd:contactInfo>
+      <gmd:CI_Contact>
+       <gmd:phone>
+        <gmd:CI_Telephone>
+         <gmd:voice>
+          <gco:CharacterString>%%OI_PH%%</gco:CharacterString>
+         </gmd:voice>
+         <gmd:facsimile>
+          <gco:CharacterString>%%OI_F%%</gco:CharacterString>
+         </gmd:facsimile>
+        </gmd:CI_Telephone>
+       </gmd:phone>
+       <gmd:address>
+        <gmd:CI_Address>
+         <gmd:deliveryPoint>
+          <gco:CharacterString>%%OI_A%%</gco:CharacterString>
+         </gmd:deliveryPoint>
+         <gmd:city>
+          <gco:CharacterString>%%OI_CI%%</gco:CharacterString>
+         </gmd:city>
+         <gmd:postalCode>
+          <gco:CharacterString>%%OI_PO%%</gco:CharacterString>
+         </gmd:postalCode>
+         <gmd:country>
+          <gco:CharacterString>%%OI_CO%%</gco:CharacterString>
+         </gmd:country>
+         <gmd:electronicMailAddress>
+          <gco:CharacterString>%%OI__E%%</gco:CharacterString>
+         </gmd:electronicMailAddress>
+        </gmd:CI_Address>
+       </gmd:address>
+       <gmd:onlineResource>
+        <gmd:CI_OnlineResource>
+         <gmd:linkage>
+          <gmd:URL>%%OI_U%%</gmd:URL>
+         </gmd:linkage>
+        </gmd:CI_OnlineResource>
+       </gmd:onlineResource>
+      </gmd:CI_Contact>
+     </gmd:contactInfo>
+     <gmd:role>
+      <gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator">originator</gmd:CI_RoleCode>
+     </gmd:role>
+    </gmd:CI_ResponsibleParty>
+   </gmd:pointOfContact>
+   <!-- generate one block by Observations and Measurements Extension variable -->
+		%%K_OE%%
+   <!-- generate one block by Observations and Measurements Version 1.1 variable -->
+		%%K_O_%%
+   <!-- GCMD keywords  concatenate with "&gt;" all levels of keywords from category to variable -->
+   <!-- The level variable is optional -->
+   <gmd:descriptiveKeywords>
+    <gmd:MD_Keywords>
+		%%K_G%%
+     <gmd:type>
+      <gmd:MD_KeywordTypeCode codeList="theme" codeListValue="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"/>
+     </gmd:type>
+     <gmd:thesaurusName>
+      <gmd:CI_Citation>
+       <gmd:title>
+        <gmx:Anchor xlink:href="https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords">NASA/Global Change Master Directory (GCMD) Earth Science Keywords. Version 8.6</gmx:Anchor>
+       </gmd:title>
+       <gmd:date>
+        <gmd:CI_Date>
+         <gmd:date>
+          <gco:Date>2017</gco:Date>
+         </gmd:date>
+         <gmd:dateType>
+          <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+         </gmd:dateType>
+        </gmd:CI_Date>
+       </gmd:date>
+       <gmd:identifier>
+        <gmd:MD_Identifier>
+         <gmd:code>
+          <gco:CharacterString>"http://idn.ceos.org/"</gco:CharacterString>
+         </gmd:code>
+        </gmd:MD_Identifier>
+       </gmd:identifier>
+      </gmd:CI_Citation>
+     </gmd:thesaurusName>
+    </gmd:MD_Keywords>
+   </gmd:descriptiveKeywords>
+   <!-- Earth Topics -->
+   <gmd:descriptiveKeywords>
+    <gmd:MD_Keywords>
+     <!--                                                (K_ET_U)     (K_ET)   -->
+	 %%K_ET%%
+     <gmd:thesaurusName>
+      <gmd:CI_Citation>
+       <gmd:title>
+        <gmx:Anchor xlink:href="https://earth.esa.int/concepts/concept_scheme/earth-topics">EO Parameter Code List - Earth Topics</gmx:Anchor>
+       </gmd:title>
+       <gmd:date>
+        <gmd:CI_Date>
+         <gmd:date>
+          <gco:Date>2018</gco:Date>
+         </gmd:date>
+         <gmd:dateType>
+          <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+         </gmd:dateType>
+        </gmd:CI_Date>
+       </gmd:date>
+      </gmd:CI_Citation>
+     </gmd:thesaurusName>
+    </gmd:MD_Keywords>
+   </gmd:descriptiveKeywords> 
+   <!-- keywords Instrument types -->
+   <gmd:descriptiveKeywords>
+    <gmd:MD_Keywords>
+     <!--                                                (I_E_T_U)              (I_E_T)   -->
+     %%I_E%%
+     <gmd:type>
+      <gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme"/>
+     </gmd:type>
+     <gmd:thesaurusName>
+      <gmd:CI_Citation>
+       <gmd:title>
+        <gmx:Anchor xlink:href="https://earth.esa.int/concepts/concept_scheme/instruments">EO Parameter Code List - Instruments</gmx:Anchor>
+       </gmd:title>
+       <gmd:date>
+        <gmd:CI_Date>
+         <gmd:date>
+          <gco:Date>2018</gco:Date>
+         </gmd:date>
+         <gmd:dateType>
+          <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+         </gmd:dateType>
+        </gmd:CI_Date>
+       </gmd:date>
+      </gmd:CI_Citation>
+     </gmd:thesaurusName>
+    </gmd:MD_Keywords>
+   </gmd:descriptiveKeywords> 
+   <!-- Free Keyword -->
+		%%K_F%%
+
+			<!-- place keywords (new)   (K_F) -->
+%%K_P%%		
+   <gmd:resourceConstraints>
+    <gmd:MD_LegalConstraints>
+     <!-- Use limitations -->
+     %%C_U%%
+     <!-- Legal constraint-->
+     <gmd:accessConstraints>
+      <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
+     </gmd:accessConstraints>
+	%%C_L%%
+    </gmd:MD_LegalConstraints>
+   </gmd:resourceConstraints>
+   <!-- hardcoded -->
+   <gmd:language>
+    <gmd:LanguageCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#LanguageCode" codeListValue="eng">eng</gmd:LanguageCode>
+   </gmd:language>
+   <!--   ISO topic  category -->
+	%%K_I%%
+   <!-- Temporal Extent -->
+   <gmd:extent>
+    <gmd:EX_Extent>
+	%%TE_D%%
+     <gmd:temporalElement>
+      <gmd:EX_TemporalExtent>
+       <gmd:extent>
+        <gml:TimePeriod xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="timeperiod1">
+         <!-- (TE_SD) -->
+         <gml:beginPosition>%%TE_SD%%</gml:beginPosition>
+         <!-- (TE_ED) -->
+         <gml:endPosition>%%TE_ED%%</gml:endPosition>
+         <!-- or <gml:endPosition /> if onGoing mission -->
+        </gml:TimePeriod>
+       </gmd:extent>
+      </gmd:EX_TemporalExtent>
+     </gmd:temporalElement>
+    </gmd:EX_Extent>
+   </gmd:extent>
+   <!-- Geographic Extent -->
+   <gmd:extent>
+    <gmd:EX_Extent>
+     <gmd:geographicElement>
+      <gmd:EX_GeographicBoundingBox>
+       <!-- (GE_W) -->
+       <gmd:westBoundLongitude>
+        <gco:Decimal>%%GE_W%%</gco:Decimal>
+       </gmd:westBoundLongitude>
+       <!-- (GE_E) -->
+       <gmd:eastBoundLongitude>
+        <gco:Decimal>%%GE_E%%</gco:Decimal>
+       </gmd:eastBoundLongitude>
+       <!-- (GE_S) -->
+       <gmd:southBoundLatitude>
+        <gco:Decimal>%%GE_S%%</gco:Decimal>
+       </gmd:southBoundLatitude>
+       <!-- (GE_N) -->
+       <gmd:northBoundLatitude>
+        <gco:Decimal>%%GE_N%%</gco:Decimal>
+       </gmd:northBoundLatitude>
+      </gmd:EX_GeographicBoundingBox>
+     </gmd:geographicElement>
+    </gmd:EX_Extent>
+   </gmd:extent>
+  </gmd:MD_DataIdentification>
+ </gmd:identificationInfo>
+ <!-- Processing Levels -->
+ <!--  (PL) -->
+	%%PL%%
+ <gmd:distributionInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+  <gmd:MD_Distribution>
+   <gmd:transferOptions>
+    <gmd:MD_DigitalTransferOptions>
+		%%D_OR%%
+
+      <!-- example of online resource with link to abstract (new) -->
+     %%D_OR_RF%%
+    </gmd:MD_DigitalTransferOptions>
+   </gmd:transferOptions>
+  </gmd:MD_Distribution>
+ </gmd:distributionInfo>
+ <gmi:acquisitionInformation>
+   <gmi:MI_AcquisitionInformation>
+   <!-- Mission Status  -->
+   <gmi:operation>
+    <gmi:MI_Operation>
+     <gmi:citation/>
+     <!-- (MS_S)-->
+     <gmi:status>
+      <gmd:MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed" xmlns:gmd="http://www.isotc211.org/2005/gmd"/>
+     </gmi:status>
+     <gmi:parentOperation/>
+    </gmi:MI_Operation>
+   </gmi:operation>
+	%%P_%%
+  </gmi:MI_AcquisitionInformation>
+ </gmi:acquisitionInformation>
+</gmi:MI_Metadata>
