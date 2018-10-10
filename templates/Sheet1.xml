@@ -339,7 +339,7 @@
      <gmi:citation/>
      <!-- (MS_S)-->
      <gmi:status>
-      <gmd:MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed" xmlns:gmd="http://www.isotc211.org/2005/gmd"/>
+      <gmd:MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="%%MS_S%%" xmlns:gmd="http://www.isotc211.org/2005/gmd"/>
      </gmi:status>
      <gmi:parentOperation/>
     </gmi:MI_Operation>
