@@ -7,6 +7,7 @@ import sys
 import json
 import ast
 import re
+import urllib
 from itertools import chain
 from openpyxl import load_workbook
 from bs4 import BeautifulSoup
@@ -134,7 +135,7 @@ pl_template = "\n   <gmd:contentInfo xmlns:gmd=\"http://www.isotc211.org/2005/gm
 dt_template = "\n     <gmd:onLine>\n" \
               "        <gmd:CI_OnlineResource>\n" \
               "         <gmd:linkage>\n" \
-              "          <gmd:URL>\"%%D_OR_U%%\"</gmd:URL>\n" \
+              "          <gmd:URL>%%D_OR_U%%</gmd:URL>\n" \
               "         </gmd:linkage>\n" \
               "        <gmd:protocol>\n" \
               "         <gco:CharacterString>%%D_OR_P%%</gco:CharacterString>\n" \
@@ -590,11 +591,14 @@ if __name__ == '__main__':
         nfiledata = nfiledata.replace("<gco:Date></gco:Date>","")
         nfiledata = nfiledata.replace("> &gt; ",">  &gt; ").replace("  &gt; ","").replace(" &gt; <","<").replace(" &gt;<","<")
         # Encode urls
-        urls = re.findall('"http.?://.*?"', nfiledata)
+        urls = re.findall('"http.?.*?"', nfiledata)
         for url in urls:
             if url.find("gmd")<=0 and url.find("3.2")<=0 and url.find("isotc211")<=0 and url.find("w3.org")<=0:
-                encodedurl = quote(url.replace('\"',''), safe='')
-                nfiledata = nfiledata.replace(url,'\"'+encodedurl+'\"')
+                # encodedurl = quote(url.replace('\"',''), safe='')
+                # nfiledata = nfiledata.replace(url, '\"' + encodedurl + '\"')
+                cleanurl = urllib.parse.unquote(url)
+                encodedurl = cleanurl.replace('&','&amp;')
+                nfiledata = nfiledata.replace(url, encodedurl)
         # Pretty print xml output
         if args.p:
             xml = xml.dom.minidom.parseString(nfiledata.replace("\n",""))

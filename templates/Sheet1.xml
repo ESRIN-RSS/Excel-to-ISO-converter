@@ -189,7 +189,7 @@
        <gmd:identifier>
         <gmd:MD_Identifier>
          <gmd:code>
-          <gco:CharacterString>"http://idn.ceos.org/"</gco:CharacterString>
+          <gco:CharacterString>http://idn.ceos.org/</gco:CharacterString>
          </gmd:code>
         </gmd:MD_Identifier>
        </gmd:identifier>
