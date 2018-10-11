@@ -184,7 +184,7 @@ pf_template ="\n   <gmi:platform>\n" \
              "      </gmd:MD_Identifier>\n" \
              "     </gmi:identifier>\n" \
              "     <gmi:description>\n" \
-             "      <gco:CharacterString>%%P_E_I%%</gco:CharacterString>\n" \
+             "      <gco:CharacterString>%%P_G_LN%%</gco:CharacterString>\n" \
              "     </gmi:description>\n" \
              "     <gmi:sponsor>\n" \
              "      <gmd:CI_ResponsibleParty xmlns:gmd=\"http://www.isotc211.org/2005/gmd\">\n" \
@@ -599,6 +599,22 @@ if __name__ == '__main__':
                 cleanurl = urllib.parse.unquote(url)
                 encodedurl = cleanurl.replace('&','&amp;')
                 nfiledata = nfiledata.replace(url, encodedurl)
+        # Remove specific empty tags
+        tags = ['gmi:platform','gmi:instrument']
+        for tag in tags:
+            maintags = re.findall(
+                '<'+tag+'>.*?</'+tag+'>',
+                nfiledata, re.DOTALL)
+            for maintag in maintags:
+                check = 0
+                emptytags = re.findall(
+                    '<gmi:description>.*?<gco:CharacterString></gco:CharacterString>.*?</gmi:description>',
+                    maintag, re.DOTALL)
+                for emptytag in emptytags:
+                    newmaintag = maintag.replace(emptytag,'<gmi:description></gmi:description>')
+                    check = 1
+                if check == 1:
+                    nfiledata = nfiledata.replace(maintag, newmaintag)
         # Pretty print xml output
         if args.p:
             xml = xml.dom.minidom.parseString(nfiledata.replace("\n",""))
