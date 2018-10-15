@@ -619,6 +619,7 @@ if __name__ == '__main__':
         if args.p:
             xml = xml.dom.minidom.parseString(nfiledata.replace("\n",""))
             nfiledata = xml.toprettyxml()
+            nfiledata = nfiledata.replace("<?xml version=\"1.0\" ?>","<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
             # bs = BeautifulSoup(nfiledata, 'xml')
             # nfiledata = bs.prettify()
         # Write the file out again
