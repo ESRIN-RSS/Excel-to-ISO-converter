@@ -364,8 +364,8 @@ def clean_field_val(val, fieldcode=""):
         val = quote(val, safe='')
     elif (fieldcode=="OI_PH" or fieldcode=="OI_F") and not val.find("+")>=0:
         val = "+"+str(val)
-    elif str(val).find("µ") > 0:
-        val = str(val).encode(encoding='UTF-8', errors='strict')
+    # elif str(val).find("µ") > 0:
+    #     val = str(val).encode(encoding='UTF-8', errors='strict')
     else:
         val = str(val)
     return val
