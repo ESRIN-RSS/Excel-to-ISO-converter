@@ -340,6 +340,7 @@ def check_workbook_sheets(workbook):
             logger.error('{} is not a valid template. Skipping'.format(sheet))
     return valid_sheets_template
 
+
 def find_number_of_entries(sheet):
     current_row = 2
     current_cell = sheet.cell(row=current_row, column=1)
@@ -350,25 +351,28 @@ def find_number_of_entries(sheet):
         current_cell = sheet.cell(row=current_row, column=1)
     return number_of_entries
 
+
 def multiple_replacer(string,replacements = []):
     # replace multiple strings in string
     for h,r in replacements:
         string = string.replace(h,r)
     return string
 
+
 def clean_field_val(val, fieldcode=""):
     if isinstance(val, datetime.datetime):
         val = datetime.datetime.strptime(str(val),'%Y-%m-%d %H:%M:%S')
         val = val.strftime('%Y-%m-%d')
-    elif str(val).find("&")>0:
-        val = quote(val, safe='')
+    # elif str(val).find("&")>0:
+    #     val = quote(val, safe='')
     elif (fieldcode=="OI_PH" or fieldcode=="OI_F") and not val.find("+")>=0:
         val = "+"+str(val)
-    # elif str(val).find("µ") > 0:
-    #     val = str(val).encode(encoding='UTF-8', errors='strict')
+    elif str(val).find("µ") > 0:
+        val = val.encode('utf-8').decode('ansi')
     else:
         val = str(val)
     return val
+
 
 def pp_json(json_thing, sort=False, indents=4):
     # pretty print json dict
@@ -378,10 +382,12 @@ def pp_json(json_thing, sort=False, indents=4):
         f = json.dumps(json_thing, sort_keys=sort, indent=indents)
     return f
 
+
 def get_list_in_list(list, loc):
     for l in list:
         if l[2] == loc:
             return l
+
 
 if __name__ == '__main__':
     args = setup_cmd_args()
@@ -620,10 +626,10 @@ if __name__ == '__main__':
         if args.p:
             xml = xml.dom.minidom.parseString(nfiledata.replace("\n",""))
             nfiledata = xml.toprettyxml()
-            nfiledata = nfiledata.replace("<?xml version=\"1.0\" ?>","<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
             # bs = BeautifulSoup(nfiledata, 'xml')
             # nfiledata = bs.prettify()
         # Write the file out again
+        nfiledata = nfiledata.replace("<?xml version=\"1.0\" ?>", "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
         with open(complete_xml_path, 'w') as file:
             file.write(nfiledata)
         # Also export json file
