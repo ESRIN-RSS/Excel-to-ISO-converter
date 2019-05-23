@@ -16,7 +16,7 @@
     <gco:CharacterString>%%OI_ONS%%</gco:CharacterString>
    </gmd:organisationName>
    <gmd:positionName>
-    <gco:CharacterString>Earth Observation helpdesk</gco:CharacterString>
+    <gco:CharacterString>%%OI_PN%%</gco:CharacterString>
    </gmd:positionName>
    <gmd:contactInfo>
     <gmd:CI_Contact>
