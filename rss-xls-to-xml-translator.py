@@ -465,7 +465,7 @@ if __name__ == '__main__':
                                 pf[pfnum][str(fieldcode)] = str(clean_field_val(fieldvalue, fieldcode))
                                 done=1
                                 added_to_multilevel.append(str(fieldcode))
-                            elif str(fieldcode)[:len(clean_rep)] == clean_rep and sublevel == "location":
+                            elif str(fieldcode)[:len(clean_rep)] == clean_rep and sublevel == "location" and not fieldvalue is None:
                                 for split in fieldvalue.split(","):
                                     try:
                                         pf[pfnum][sublevel][instrc][str(fieldcode)]
