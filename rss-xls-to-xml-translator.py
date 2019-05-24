@@ -277,7 +277,7 @@ template_list = [["Title", ti_template, '%%MI_T%%','%%MI_AT%%','Alternate title'
                  ["DOI", mid_template, '%%MI_D%%', '', '', '%MI_I%'],
                  ["Instruments", nins_template, '%%I_E%%', '', '', '']]
 
-# template_list = [["Observations and measurements", om_template, '%%K_O_%%', '%%K_O_VAL%%', 'Value', omval_template]]
+# template_list = [["Mission info", pf_template, '%%P_%%','%%I_%%',"Instrument",ins_template]]
 
 def setup_cmd_args():
     """Setup command line arguments."""
@@ -607,21 +607,22 @@ if __name__ == '__main__':
                 nfiledata = nfiledata.replace(url, encodedurl)
         nfiledata = re.sub('&(?!amp;|gt;|lt;)', '&amp;', nfiledata)
         # Remove specific empty tags
-        tags = ['gmi:platform','gmi:instrument']
-        for tag in tags:
-            maintags = re.findall(
-                '<'+tag+'>.*?</'+tag+'>',
-                nfiledata, re.DOTALL)
-            for maintag in maintags:
-                check = 0
-                emptytags = re.findall(
-                    '<gmi:description>.*?<gco:CharacterString></gco:CharacterString>.*?</gmi:description>',
-                    maintag, re.DOTALL)
-                for emptytag in emptytags:
-                    newmaintag = maintag.replace(emptytag,'<gmi:description></gmi:description>')
-                    check = 1
-                if check == 1:
-                    nfiledata = nfiledata.replace(maintag, newmaintag)
+        # tags = ['gmi:platform','gmi:instrument']
+        # for tag in tags:
+        #     maintags = re.findall(
+        #         '<'+tag+'>.*?</'+tag+'>',
+        #         nfiledata, re.DOTALL)
+        #     for maintag in maintags:
+        #         check = 0
+        #         emptytags = re.findall(
+        #             '<gmi:description>.*?<gco:CharacterString></gco:CharacterString>.*?</gmi:description>',
+        #             maintag, re.DOTALL)
+        #         for emptytag in emptytags:
+        #             print(emptytag)
+        #             newmaintag = maintag.replace(emptytag,'<gmi:description></gmi:description>')
+        #             check = 1
+        #         if check == 1:
+        #             nfiledata = nfiledata.replace(maintag, newmaintag)
         # Pretty print xml output
         if args.p:
             xml = xml.dom.minidom.parseString(nfiledata.replace("\n",""))
