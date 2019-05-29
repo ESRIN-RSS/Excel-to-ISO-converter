@@ -261,7 +261,8 @@ nins_template = "     <gmd:keyword>\n" \
                  "      <gmx:Anchor xlink:href=\"%%I_E_T_U%%\">%%I_E_T%%</gmx:Anchor>\n" \
                  "     </gmd:keyword>\n"
 
-template_list = [["Title", ti_template, '%%MI_T%%','%%MI_AT%%','Alternate title',ati_template],
+template_list = [["Alternate title", ati_template, '%%MI_AT%%', '', '', ''],
+                 ["Title", ti_template, '%%MI_T%%', '', '', ''],
                  ["Temporal extent", te_template, '%%TE_D%%', '', '', ''],
                  ['kp', mkp_template, '%%K_P%%', '%%K_P%%', 'location', kp_template],
                  ["Earth topics", et_template, '%%K_ET%%','%%K_G%%','',''],
@@ -279,7 +280,6 @@ template_list = [["Title", ti_template, '%%MI_T%%','%%MI_AT%%','Alternate title'
                  ["DOI", mid_template, '%%MI_D%%', '', '', '%MI_I%'],
                  ["Instruments", nins_template, '%%I_E%%', '', '', '']]
 
-# template_list = [["Mission info", pf_template, '%%P_%%','%%I_%%',"Instrument",ins_template]]
 
 def setup_cmd_args():
     """Setup command line arguments."""
@@ -527,6 +527,7 @@ if __name__ == '__main__':
         for i in j:
             for cond, template, rep, subrep, sublevel, subtemplate in template_list:
                 tetype = get_type(cond, template, rep, subrep, sublevel, subtemplate)
+                # print(tetype)
                 if i==cond:
                     n_template = ""
                     u_template = ""
@@ -576,7 +577,7 @@ if __name__ == '__main__':
                         if subrep.replace("%","") in j[i][h] and j[i][h][subrep.replace("%","")] != 'None':
                             s_template = s_template + multiple_replacer(subtemplate, l)
                         elif tetype == 5:
-                            # the particular case of K_O_VAL key, main template is not writen if no valid subtemplate was generated
+                            # the particular cases of K_O_VAL and K_OE_VAL key, main template is not writen if no valid subtemplate was generated
                             if (rep == "%%K_O_%%" or rep == "%%K_OE%%") and u_template == "":
                                 pass
                             else:
