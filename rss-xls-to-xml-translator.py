@@ -73,11 +73,12 @@ om_template = "   <gmd:descriptiveKeywords>\n" \
 omval_template = "     <gmd:keyword>\n" \
               "         <gmx:Anchor xlink:href=\"%%K_O_U%%\">%%K_O_VAL%%</gmx:Anchor>\n" \
               "       </gmd:keyword>\n"
+omeval_template = "     <gmd:keyword>\n" \
+              "         <gmx:Anchor xlink:href=\"%%K_OE_U%%\">%%K_OE_VAL%%</gmx:Anchor>\n" \
+              "       </gmd:keyword>\n"
 ome_template = "<gmd:descriptiveKeywords>\n" \
                "    <gmd:MD_Keywords>\n" \
-               "     <gmd:keyword>\n" \
-              "         <gmx:Anchor xlink:href=\"%%K_OE_U%%\">%%K_OE_VAL%%</gmx:Anchor>\n" \
-              "       </gmd:keyword>\n" \
+               " %%K_OE_VAL%%" \
               "     <gmd:type>\n" \
               "      <gmd:MD_KeywordTypeCode codeList=\"https://earth.esa.int/2017/resources/codeList.xml#MD_KeywordTypeCode\" codeListValue=\"%%K_OE_VAR%%\"/>\n" \
               "    </gmd:type>\n" \
@@ -269,7 +270,8 @@ template_list = [["Title", ti_template, '%%MI_T%%','%%MI_AT%%','Alternate title'
                  ["Legal constraints", lc_template, '%%C_L%%','','',''],
                  ["Use limitations", ul_template, '%%C_U%%','','',''],
                  ["Observations and measurements", om_template, '%%K_O_%%', '%%K_O_VAL%%', 'Value', omval_template],
-                 ["Observations and measurements extension", ome_template, '%%K_OE%%','','',''],
+                 ["Observations and measurements extension", ome_template, '%%K_OE%%', '%%K_OE_VAL%%', 'Value',
+                  omeval_template],
                  ["Free keywords", fk_template, '%%K_F%%','','',''],
                  ["Processing levels", pl_template, '%%PL%%','','',''],
                  ["Distributions", dt_template, '%%D_OR%%','%%D_OR_RF%%','',rf_template],
@@ -360,6 +362,7 @@ def multiple_replacer(string,replacements = []):
 
 
 def clean_field_val(val, fieldcode=""):
+    # print(val,fieldcode)
     if isinstance(val, datetime.datetime):
         val = datetime.datetime.strptime(str(val),'%Y-%m-%d %H:%M:%S')
         val = val.strftime('%Y-%m-%d')
@@ -574,7 +577,7 @@ if __name__ == '__main__':
                             s_template = s_template + multiple_replacer(subtemplate, l)
                         elif tetype == 5:
                             # the particular case of K_O_VAL key, main template is not writen if no valid subtemplate was generated
-                            if rep == "%%K_O_%%" and u_template == "":
+                            if (rep == "%%K_O_%%" or rep == "%%K_OE%%") and u_template == "":
                                 pass
                             else:
                                 n_template = n_template + multiple_replacer(template, l)
