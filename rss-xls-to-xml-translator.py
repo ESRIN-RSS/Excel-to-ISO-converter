@@ -291,6 +291,7 @@ def setup_cmd_args():
     parser.add_argument('-o', action='store_true', help="Overwrite output XML file")
     return parser.parse_args()
 
+
 def setup_logging():
     # Default logging function
     log_format = logging.Formatter("%(asctime)s [%(levelname)-5.5s]  %(message)s")
@@ -306,6 +307,23 @@ def setup_logging():
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(log_format)
     logger.addHandler(console_handler)
+
+
+def check_all_green(worksheet):
+    mandatory_fields = ["OI_ONS", "OI_ONL", "OI_PN", "OI__E", "MI_I", "MI_T", "MI_CD", "MI_UD", "MI_AB", "GE_W", "GE_E", "GE_S", "GE_N", "TE_SD", "C_UL", "K_ISO", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN"]
+    count = 0
+    for row in range(1, 500):
+        fieldcode = worksheet.cell(row=row, column=1).value
+        fieldname = worksheet.cell(row=row, column=2).value
+        fieldvalue = worksheet.cell(row=row, column=3).value
+        for mf in mandatory_fields:
+            if fieldcode == mf and fieldvalue is None:
+                count += 1
+    if count > 0:
+        return False
+    else:
+        return True
+
 
 def get_type(cond, template, rep, subrep, sublevel, subtemplate):
     clean_rep = rep.replace("%","")
@@ -406,6 +424,10 @@ if __name__ == '__main__':
     for sheet in valid_sheets:
         maintemplate = os.path.join(cd, 'templates', sheet + '.xml')
         worksheet = wb[sheet]
+        logger.info("Checking mandatory fields...")
+        if not check_all_green(worksheet):
+            logger.error("Mandatory fields in excel file are not all filed. Exiting...")
+            exit()
         data = {}
         json_data = json.dumps(data)
         for cond, template, rep, subrep, sublevel, subtemplate in template_list:
