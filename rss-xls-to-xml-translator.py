@@ -372,10 +372,10 @@ def find_number_of_entries(sheet):
     return number_of_entries
 
 
-def multiple_replacer(string,replacements = []):
+def multiple_replacer(string, replacements=[]):
     # replace multiple strings in string
-    for h,r in replacements:
-        string = string.replace(h,r)
+    for h, r in replacements:
+        string = string.replace(h, r)
     return string
 
 
@@ -386,7 +386,7 @@ def clean_field_val(val, fieldcode=""):
         val = val.strftime('%Y-%m-%d')
     # elif str(val).find("&")>0:
     #     val = quote(val, safe='')
-    elif (fieldcode=="OI_PH" or fieldcode=="OI_F") and not val.find("+")>=0:
+    elif (fieldcode == "OI_PH" or fieldcode == "OI_F") and not val.find("+") >= 0:
         val = "+"+str(val)
     elif str(val).find("µ") > 0:
         val = val.encode('utf-8').decode('cp1252')
@@ -533,7 +533,7 @@ if __name__ == '__main__':
                 pfc = ast.literal_eval(pfc)
                 data.update(pfc)
                 json_data = json.dumps(data)
-        j=json.loads(json_data)
+        j = json.loads(json_data)
         complete_xml_path = os.path.join(args.outputdir, os.path.basename(args.xlsfile).split(".")[0]+".xml")
         complete_json_path = os.path.join(args.outputdir, os.path.basename(args.xlsfile).split(".")[0]+".json")
         # Create outputdir
@@ -549,11 +549,12 @@ if __name__ == '__main__':
         for i in j:
             for cond, template, rep, subrep, sublevel, subtemplate in template_list:
                 tetype = get_type(cond, template, rep, subrep, sublevel, subtemplate)
-                # print(tetype)
-                if i==cond:
+                if i == cond:
                     n_template = ""
                     u_template = ""
                     s_template = ""
+                    m_template = ""
+                    o_template = ""
                     for h in j[i]:
                         cross_check_value = ""
                         l = []
@@ -586,7 +587,7 @@ if __name__ == '__main__':
                                         if not v in l:
                                             l.append(v)
                                 elif not (j[i][h][x] == 'None' or j[i][h][x] == "#N/A"):
-                                    v = ['%%'+x+'%%',j[i][h][x]]
+                                    v = ['%%'+x+'%%', j[i][h][x]]
                                     if not v in l:
                                         l.append(v)
                                 else:
@@ -606,22 +607,27 @@ if __name__ == '__main__':
                                 n_template = n_template + multiple_replacer(template, l)
                                 n_template = n_template.replace(subrep, u_template)
                                 n_template = multiple_replacer(n_template, l)
+                        elif sublevel != "" and tetype != 5:
+                            # print("check", rep, subrep, sublevel)
+                            u_template = multiple_replacer(u_template, l)
+                            m_template = template.replace(subrep, u_template)
+                            m_template = multiple_replacer(m_template, l)
+                            u_template = ""
+                            o_template = o_template + m_template
                         else:
                             if len(l) > 0:
                                 n_template = n_template + multiple_replacer(template, l)
                     if subrep != "" and subtemplate != "" and sublevel == "":
                         nfiledata = nfiledata.replace(subrep, s_template)
-                    if sublevel != "" and tetype != 5:
-                        u_template = multiple_replacer(u_template,l)
-                        n_template = template.replace(subrep, u_template)
-                        n_template = multiple_replacer(n_template,l)
+                    if o_template != "":
+                        nfiledata = nfiledata.replace(rep, o_template)
                     nfiledata = nfiledata.replace(rep, n_template)
-            if not (i in chain.from_iterable(template_list)) and not (j[i]== 'None' or j[i] == "#N/A"):
+            if not (i in chain.from_iterable(template_list)) and not (j[i] == 'None' or j[i] == "#N/A"):
                 nfiledata = nfiledata.replace('%%' + str(i) + '%%', str(j[i]))
         # Clean all unused %%LOCATORS%% in template
         nfiledata = re.sub('%%.*?%%', '', nfiledata)
-        nfiledata = nfiledata.replace("<gco:Date></gco:Date>","")
-        nfiledata = nfiledata.replace("> &gt; ",">  &gt; ").replace("  &gt; ","").replace(" &gt; <","<").replace(" &gt;<","<")
+        nfiledata = nfiledata.replace("<gco:Date></gco:Date>", "")
+        nfiledata = nfiledata.replace("> &gt; ", ">  &gt; ").replace("  &gt; ", "").replace(" &gt; <", "<").replace(" &gt;<", "<")
         # Decode urls
         urls = re.findall('"http.?.*?"', nfiledata)
         for url in urls:
