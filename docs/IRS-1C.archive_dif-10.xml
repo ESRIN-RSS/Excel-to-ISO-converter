@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><DIF xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gmi="http://www.isotc211.org/2005/gmi" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ https://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif_v10.2.xsd">
+<Entry_ID>
+<Short_Name>IRS-1C.archive</Short_Name>
+<Version>NA</Version>
+</Entry_ID>
+<Entry_Title>IRS-1C archive</Entry_Title>
+<Science_Keywords>
+<Category>EARTH SCIENCE</Category>
+<Topic>LAND SURFACE</Topic>
+<Term>GEOMORPHIC LANDFORMS/PROCESSES</Term>
+<Variable_Level_1>GLACIAL PROCESSES</Variable_Level_1>
+</Science_Keywords>
+<ISO_Topic_Category>IMAGERY/BASE MAPS/EARTH COVER</ISO_Topic_Category>
+<Ancillary_Keyword>Earth Online</Ancillary_Keyword>
+<Ancillary_Keyword>OADS</Ancillary_Keyword>
+<Platform>
+<Type>Earth Observation Satellites</Type>
+<Short_Name>IRS-1C</Short_Name>
+<Instrument>
+<Short_Name>PAN</Short_Name>
+<Long_Name>IRS Panchromatic Camera</Long_Name>
+</Instrument>
+<!--
+<Instrument>
+<Short_Name>LISS-III</Short_Name>
+<Long_Name>Linear Imaging Self Scanning Sensor III</Long_Name>
+</Instrument>
+<Instrument>
+<Short_Name>WIFS</Short_Name>
+<Long_Name>Wide Field Scanner</Long_Name>
+</Instrument>
+-->
+</Platform>
+<Temporal_Coverage>
+<Range_DateTime>
+<Beginning_Date_Time>1996-01-01</Beginning_Date_Time>
+<Ending_Date_Time>2004-12-31</Ending_Date_Time>
+</Range_DateTime>
+</Temporal_Coverage>
+<Dataset_Progress>COMPLETE</Dataset_Progress>
+<Spatial_Coverage>
+<Granule_Spatial_Representation>NO_SPATIAL</Granule_Spatial_Representation>
+<Geometry>
+<Coordinate_System>CARTESIAN</Coordinate_System>
+<Bounding_Rectangle>
+<Southernmost_Latitude>-90</Southernmost_Latitude>
+<Northernmost_Latitude>90</Northernmost_Latitude>
+<Westernmost_Longitude>-180</Westernmost_Longitude>
+<Easternmost_Longitude>180</Easternmost_Longitude>
+</Bounding_Rectangle>
+</Geometry>
+</Spatial_Coverage>
+<Project>
+<Short_Name>FedEO</Short_Name>
+<Long_Name>FedEO (longname): Federated EO Gateway</Long_Name>
+</Project>
+<Organization>
+<Organization_Type>DISTRIBUTOR</Organization_Type>
+<Organization_Name>
+<Short_Name>ESA/ESRIN</Short_Name>
+<Long_Name>ESRIN Earth Observation, European Space Agency</Long_Name>
+</Organization_Name>
+<Organization_URL>http://www.earth.esa.int</Organization_URL>
+<Personnel>
+<Role>DATA CENTER CONTACT</Role>
+<Contact_Group>
+<Name>Earth Observation helpdesk</Name>
+<Email>eohelp@eo.esa.int</Email>
+</Contact_Group>
+</Personnel>
+</Organization>
+<Summary>
+<Abstract>IRS-1C archive products are available as: Note: Whether system corrected or radiometrically corrected products are available depends on sensor and processing centre LISS-III ortho corrected are delivered without Band 5 For PAN and LISS-III ortho corrected: If unavailable, user has to supply ground control information and DEM in suitable quality For WiFS ortho corrected: service based on in house available ground control information and DEM The IRS-1C products are available as part of the GAF Imagery products from the IRS-1C, IRS-1D, CartoSat-1, ResourceSat-1 and ResourceSat-2 missions.</Abstract>
+</Summary>
+<Related_URL>
+<URL_Content_Type>
+<Type>GET DATA</Type>
+</URL_Content_Type>
+<URL>https://earth.esa.int/documents/10174/2824241/IRS-1C-Data-User-Handbook</URL>
+<Description>DescribedBy</Description>
+<Mime_Type>text/html</Mime_Type>
+</Related_URL>
+
+<Metadata_Name>CEOS IDN DIF</Metadata_Name>
+<Metadata_Version>VERSION 10.2</Metadata_Version>
+<Metadata_Dates>
+<Metadata_Creation>1996-01-01</Metadata_Creation>
+<Metadata_Last_Revision>unknown</Metadata_Last_Revision>
+<Data_Creation>unknown</Data_Creation>
+<Data_Last_Revision>unknown</Data_Last_Revision>
+</Metadata_Dates>
+<Product_Level_Id>NA</Product_Level_Id>
+<Extended_Metadata>
+<Metadata>
+<Group>int.esa.fedeo</Group>
+<Name>Observations and Measurements Extension</Name>
+<Type>orbitHeight</Type>
+<Value>817km</Value>
+</Metadata>
+</Extended_Metadata>
+<Extended_Metadata>
+<Metadata>
+<Group>int.esa.fedeo</Group>
+<Name>Observations and Measurements Version 1.1</Name>
+<Type>orbitType</Type>
+<Value>Polar Sun-synchronous</Value>
+</Metadata>
+</Extended_Metadata>
+<Extended_Metadata>
+<Metadata>
+<Group>int.esa.fedeo</Group>
+<Name>Observations and Measurements Extension</Name>
+<Type>swathWidth</Type>
+<Value>70 km - PAN142 km - LISS-III810 km - WiFS</Value>
+</Metadata>
+</Extended_Metadata>
+<Extended_Metadata>
+<Metadata>
+<Group>int.esa.fedeo</Group>
+<Name>EO Parameter Code List - Earth Topics</Name>
+<Type>theme</Type>
+<Value>Forestry</Value>
+<Value>Vegetation</Value>
+<Value>Natural Disasters</Value>
+<Value>Oceans and Coasts</Value>
+<Value>Snow Ice</Value>
+</Metadata>
+</Extended_Metadata>
+<Extended_Metadata>
+<Metadata>
+<Group>int.esa.fedeo</Group>
+<Name>EO Parameter Code List - Instruments</Name>
+<Type>theme</Type>
+<Value>Imaging Radars</Value>
+<Value>Scatterometers</Value>
+</Metadata>
+</Extended_Metadata>
+</DIF>
