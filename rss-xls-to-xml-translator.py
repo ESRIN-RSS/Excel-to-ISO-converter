@@ -392,7 +392,7 @@ def clean_field_val(val, fieldcode=""):
         val = val.encode('utf-8').decode('cp1252')
     else:
         val = str(val)
-    return val
+    return val.strip()
 
 
 def pp_json(json_thing, sort=False, indents=4):
