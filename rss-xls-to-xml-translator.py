@@ -634,8 +634,8 @@ if __name__ == '__main__':
             if url.find("gmd")<=0 and url.find("3.2")<=0 and url.find("isotc211")<=0 and url.find("w3.org")<=0:
                 # encodedurl = quote(url.replace('\"',''), safe='')
                 # nfiledata = nfiledata.replace(url, '\"' + encodedurl + '\"')
-                cleanurl = urllib.parse.unquote(url)
-                encodedurl = cleanurl.replace('&','&amp;')
+                # cleanurl = urllib.parse.unquote(url)
+                encodedurl = url.replace('&','&amp;')
                 nfiledata = nfiledata.replace(url, encodedurl)
         nfiledata = re.sub('&(?!amp;|gt;|lt;)', '&amp;', nfiledata)
         # Remove specific empty tags
