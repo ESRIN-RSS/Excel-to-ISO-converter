@@ -388,8 +388,8 @@ def clean_field_val(val, fieldcode=""):
     #     val = quote(val, safe='')
     elif (fieldcode == "OI_PH" or fieldcode == "OI_F") and not val.find("+") >= 0:
         val = "+"+str(val)
-    elif str(val).find("µ") > 0:
-        val = val.encode('utf-8').decode('cp1252')
+    # elif str(val).find("µ") > 0:
+    #     val = val.encode('utf-8').decode('cp1252')
     else:
         val = str(val)
     return val.strip()
@@ -663,10 +663,10 @@ if __name__ == '__main__':
             # nfiledata = bs.prettify()
         # Write the file out again
         nfiledata = nfiledata.replace("<?xml version=\"1.0\" ?>", "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
-        with open(complete_xml_path, 'w') as file:
+        with open(complete_xml_path, 'w', encoding="utf-8") as file:
             file.write(nfiledata)
         # Also export json file
         if args.j:
-            with open(complete_json_path, 'w') as file:
+            with open(complete_json_path, 'w', encoding="utf-8") as file:
                 file.write(str(pp_json(j)))
     logger.info("Done")
