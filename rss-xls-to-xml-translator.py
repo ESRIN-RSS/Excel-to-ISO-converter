@@ -318,6 +318,8 @@ def check_all_green(worksheet):
         fieldvalue = worksheet.cell(row=row, column=3).value
         for mf in mandatory_fields:
             if fieldcode == mf and fieldvalue is None:
+                logger.error(
+                    "Missing field value: code [{}], name [{}], value [{}]".format(fieldcode, fieldname, fieldvalue))
                 count += 1
     if count > 0:
         return False
