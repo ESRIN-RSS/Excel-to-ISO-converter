@@ -10,6 +10,7 @@ import re
 import sys
 #import urllib
 import xml.dom.minidom
+from xml.sax.saxutils import escape
 from itertools import chain
 #from urllib.parse import quote
 #from bs4 import BeautifulSoup
@@ -402,7 +403,7 @@ def clean_field_val(val, fieldcode=""):
     #     val = val.encode('utf-8').decode('cp1252')
     else:
         val = str(val)
-    return val.strip()
+    return escape(val.strip())
 
 
 def pp_json(json_thing, sort=False, indents=4):
