@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import ast
+import datetime
+import json
 import logging
 import os
-import sys
-import json
-import ast
 import re
-import urllib
-from itertools import chain
-from openpyxl import load_workbook
-from bs4 import BeautifulSoup
+import sys
+#import urllib
 import xml.dom.minidom
-import datetime
-from urllib.parse import quote
-
+from itertools import chain
+#from urllib.parse import quote
+#from bs4 import BeautifulSoup
+from openpyxl import load_workbook
 
 LOG_PATH = 'logs'
 LOG_NAME = 'cmdline'
