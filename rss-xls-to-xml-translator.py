@@ -253,9 +253,14 @@ rf_template = "     <gmd:onLine xlink:type=\"simple\" xlink:href=\"xpointer(%%D_
               "       </gmd:function>\n" \
               "      </gmd:CI_OnlineResource>\n" \
               "     </gmd:onLine>\n"
-mid_template= "<gmd:code>\n" \
+mid_template = "<gmd:RS_Identifier>\n" \
+              "<gmd:code>\n" \
               "<gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
-              "</gmd:code>\n"
+              "</gmd:code>\n" \
+              "<gmd:codeSpace>\n" \
+              "<gco:CharacterString>http://doi.org</gco:CharacterString>\n" \
+              "</gmd:codeSpace>\n" \
+              "</gmd:RS_Identifier>\n"
 nins_template = "     <gmd:keyword>\n" \
                  "      <gmx:Anchor xlink:href=\"%%I_E_T_U%%\">%%I_E_T%%</gmx:Anchor>\n" \
                  "     </gmd:keyword>\n"
@@ -276,7 +281,7 @@ template_list = [["Alternate title", ati_template, '%%MI_AT%%', '', '', ''],
                  ["Processing levels", pl_template, '%%PL%%','','',''],
                  ["Distributions", dt_template, '%%D_OR%%','%%D_OR_RF%%','',rf_template],
                  ["Mission info", pf_template, '%%P_%%','%%I_%%',"Instrument",ins_template],
-                 ["DOI", mid_template, '%%MI_D%%', '', '', '%MI_I%'],
+                 ["DOI", mid_template, '%%MI_D%%', '', '', ''],
                  ["Instruments", nins_template, '%%I_E%%', '', '', '']]
 
 

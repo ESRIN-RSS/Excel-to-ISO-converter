@@ -92,15 +92,8 @@
        </gmd:dateType>
       </gmd:CI_Date>
      </gmd:date>
-     <!-- Metadata Identification DOI or, if no DOI (MI_D),   Metadata Identification Identifier (MI_I) -->
-     <gmd:identifier>
-      <gmd:RS_Identifier>
-       %%MI_D%%
-       <gmd:codeSpace>
-        <gco:CharacterString>%%OI_U%%</gco:CharacterString>
-       </gmd:codeSpace>
-      </gmd:RS_Identifier>
-     </gmd:identifier>
+     <!-- Metadata Identification DOI if (MI_D) present, empty otherwise -->
+     <gmd:identifier>%%MI_D%%</gmd:identifier>
     </gmd:CI_Citation>
    </gmd:citation>
    <!-- Metadata Identification abstract (MI_UD)-->
