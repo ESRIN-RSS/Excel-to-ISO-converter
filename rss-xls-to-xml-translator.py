@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import ast
+import datetime
+import json
 import logging
 import os
-import sys
-import json
-import ast
 import re
-import urllib
-from itertools import chain
-from openpyxl import load_workbook
-from bs4 import BeautifulSoup
+import sys
+#import urllib
 import xml.dom.minidom
-import datetime
-from urllib.parse import quote
-
+from xml.sax.saxutils import escape
+from itertools import chain
+#from urllib.parse import quote
+#from bs4 import BeautifulSoup
+from openpyxl import load_workbook
 
 LOG_PATH = 'logs'
 LOG_NAME = 'cmdline'
@@ -254,9 +254,14 @@ rf_template = "     <gmd:onLine xlink:type=\"simple\" xlink:href=\"xpointer(%%D_
               "       </gmd:function>\n" \
               "      </gmd:CI_OnlineResource>\n" \
               "     </gmd:onLine>\n"
-mid_template= "<gmd:code>\n" \
+mid_template = "<gmd:RS_Identifier>\n" \
+              "<gmd:code>\n" \
               "<gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
-              "</gmd:code>\n"
+              "</gmd:code>\n" \
+              "<gmd:codeSpace>\n" \
+              "<gco:CharacterString>http://doi.org</gco:CharacterString>\n" \
+              "</gmd:codeSpace>\n" \
+              "</gmd:RS_Identifier>\n"
 nins_template = "     <gmd:keyword>\n" \
                  "      <gmx:Anchor xlink:href=\"%%I_E_T_U%%\">%%I_E_T%%</gmx:Anchor>\n" \
                  "     </gmd:keyword>\n"
@@ -277,7 +282,7 @@ template_list = [["Alternate title", ati_template, '%%MI_AT%%', '', '', ''],
                  ["Processing levels", pl_template, '%%PL%%','','',''],
                  ["Distributions", dt_template, '%%D_OR%%','%%D_OR_RF%%','',rf_template],
                  ["Mission info", pf_template, '%%P_%%','%%I_%%',"Instrument",ins_template],
-                 ["DOI", mid_template, '%%MI_D%%', '', '', '%MI_I%'],
+                 ["DOI", mid_template, '%%MI_D%%', '', '', ''],
                  ["Instruments", nins_template, '%%I_E%%', '', '', '']]
 
 
@@ -289,6 +294,7 @@ def setup_cmd_args():
     parser.add_argument('-j', action='store_true', help="Also export JSON file")
     parser.add_argument('-p', action='store_true', help="Pretty print XML file")
     parser.add_argument('-o', action='store_true', help="Overwrite output XML file")
+    parser.add_argument('-l', action='store_true', help="Skip I_G_LN as mandatory field", default=False)
     return parser.parse_args()
 
 
@@ -309,8 +315,11 @@ def setup_logging():
     logger.addHandler(console_handler)
 
 
-def check_all_green(worksheet):
-    mandatory_fields = ["OI_ONS", "OI_ONL", "OI_PN", "OI__E", "MI_I", "MI_T", "MI_CD", "MI_UD", "MI_AB", "GE_W", "GE_E", "GE_S", "GE_N", "TE_SD", "C_UL", "K_ISO", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "D_OR_N", "D_OR_U", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN"]
+def check_all_green(worksheet, l=False):
+    if not l:
+        mandatory_fields = ["OI_ONS", "OI_ONL", "OI_PN", "OI__E", "MI_I", "MI_T", "MI_CD", "MI_UD", "MI_AB", "GE_W", "GE_E", "GE_S", "GE_N", "TE_SD", "C_UL", "K_ISO", "D_OR_N", "D_OR_U", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN", "I_G_LN"]
+    else:
+        mandatory_fields = ["OI_ONS", "OI_ONL", "OI_PN", "OI__E", "MI_I", "MI_T", "MI_CD", "MI_UD", "MI_AB", "GE_W", "GE_E", "GE_S", "GE_N", "TE_SD", "C_UL", "K_ISO", "D_OR_N", "D_OR_U", "P_E_I", "P_E_LD", "P_G_SN", "I_E_U", "I_G_SN"]
     count = 0
     for row in range(1, 500):
         fieldcode = worksheet.cell(row=row, column=1).value
@@ -394,7 +403,7 @@ def clean_field_val(val, fieldcode=""):
     #     val = val.encode('utf-8').decode('cp1252')
     else:
         val = str(val)
-    return val.strip()
+    return escape(val.strip())
 
 
 def pp_json(json_thing, sort=False, indents=4):
@@ -427,7 +436,7 @@ if __name__ == '__main__':
         maintemplate = os.path.join(cd, 'templates', sheet + '.xml')
         worksheet = wb[sheet]
         logger.info("Checking mandatory fields...")
-        if not check_all_green(worksheet):
+        if not check_all_green(worksheet, args.l):
             logger.error("Mandatory fields in excel file are not all filed. Exiting...")
             exit()
         data = {}
