@@ -576,7 +576,7 @@ if __name__ == '__main__':
                                     pf[pfnum] = {}
                             pf[pfnum][str(fieldcode)] = str(clean_field_val(fieldvalue, fieldcode))
                             if (cond == 'DOI') and (fieldcode == 'MI_D_C'):
-                                if ('MI_D' not in pf[pfnum]) or (pf[pfnum]['MI_D'] is None):
+                                if ('MI_D' not in pf[pfnum]) or (pf[pfnum]['MI_D'] == 'None'):
                                     pf[pfnum] = {}
                             done=1
                             added_to_multilevel.append(str(fieldcode))
