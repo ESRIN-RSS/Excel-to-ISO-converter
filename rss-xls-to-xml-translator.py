@@ -254,18 +254,50 @@ rf_template = "     <gmd:onLine xlink:type=\"simple\" xlink:href=\"xpointer(%%D_
               "       </gmd:function>\n" \
               "      </gmd:CI_OnlineResource>\n" \
               "     </gmd:onLine>\n"
-mid_template = "<gmd:RS_Identifier>\n" \
-              "<gmd:code>\n" \
-              "<gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
-              "</gmd:code>\n" \
-              "<gmd:codeSpace>\n" \
-              "<gco:CharacterString>http://doi.org</gco:CharacterString>\n" \
-              "</gmd:codeSpace>\n" \
-              "</gmd:RS_Identifier>\n"
+# mid_template = "<gmd:RS_Identifier>\n" \
+#               "<gmd:code>\n" \
+#               "<gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
+#               "</gmd:code>\n" \
+#               "<gmd:codeSpace>\n" \
+#               "<gco:CharacterString>http://doi.org</gco:CharacterString>\n" \
+#               "</gmd:codeSpace>\n" \
+#               "</gmd:RS_Identifier>\n"
+mid_template = "<gmd:identifier>\n" \
+            "<gmd:MD_Identifier>\n" \
+            "    <gmd:code>\n" \
+            "        <gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
+            "    </gmd:code>\n" \
+            "    <gmd:codeSpace>\n" \
+            "        <gco:CharacterString>https://doi.org</gco:CharacterString>\n" \
+            "    </gmd:codeSpace>\n" \
+            "    <gmd:description>\n" \
+            "        <!-- NASA Earth Data requirement is that this string must contain \"DOI\"; no such requirement for ESA -->\n" \
+            "        <gco:CharacterString>%%MI_D_C%%</gco:CharacterString>\n" \
+            "    </gmd:description>\n" \
+            "    <gmd:authority>\n" \
+            "        <gmd:CI_Citation>\n" \
+            "            <gmd:title/>\n" \
+            "            <gmd:date/>\n" \
+            "            <gmd:citedResponsibleParty>\n" \
+            "                <gmd:CI_ResponsibleParty>\n" \
+            "                    <gmd:organisationName>\n" \
+            "                        <gco:CharacterString>https://doi.org/</gco:CharacterString>\n" \
+            "                    </gmd:organisationName>\n" \
+            "                    <gmd:role>\n" \
+            "                        <gmd:CI_RoleCode codeList=\"https://cdn.earthdata.nasa.gov/iso/resources/Codelist/gmxCodelists.xml#CI_RoleCode\" codeListValue=\"authority\">authority</gmd:CI_RoleCode>\n" \
+            "                    </gmd:role>\n" \
+            "                </gmd:CI_ResponsibleParty>\n" \
+            "            </gmd:citedResponsibleParty>\n" \
+            "        </gmd:CI_Citation>\n" \
+            "    </gmd:authority>\n" \
+            "</gmd:MD_Identifier>\n" \
+        "</gmd:identifier>\n" \
+
 nins_template = "     <gmd:keyword>\n" \
                  "      <gmx:Anchor xlink:href=\"%%I_E_T_U%%\">%%I_E_T%%</gmx:Anchor>\n" \
                  "     </gmd:keyword>\n"
 
+# Structure in template_list :  cond, template, rep, subrep, sublevel, subtemplate
 template_list = [["Alternate title", ati_template, '%%MI_AT%%', '', '', ''],
                  ["Title", ti_template, '%%MI_T%%', '', '', ''],
                  ["Temporal extent", te_template, '%%TE_D%%', '', '', ''],
@@ -337,6 +369,7 @@ def check_all_green(worksheet, l=False):
 
 
 def get_type(cond, template, rep, subrep, sublevel, subtemplate):
+    """Define template type according to the template list settings"""
     clean_rep = rep.replace("%","")
     clean_subrep = subrep.replace("%","")
     if subrep == '' and sublevel == '' and subtemplate == '':
@@ -422,26 +455,37 @@ def get_list_in_list(list, loc):
 
 
 if __name__ == '__main__':
+    # Parse command line arguments
     args = setup_cmd_args()
+    # Setup logging to stdout
     setup_logging()
+    # Open the input excel
     wb = load_workbook(filename=args.xlsfile, data_only=True)
+    # check valid sheets in excel and if not found return an error
     valid_sheets = check_workbook_sheets(wb)
     if len(valid_sheets) < 1:
         logger.error("No valid sheets were found. (sheet name should equal a template name to use). Exiting.")
         exit()
     logger.info("Parsing file {}".format(args.xlsfile))
+    # Define input array data structures %Q%
     added_to_multilevel = []
     added_to_multilevel2 = []
+    # Iterate on the sheets of the excel
     for sheet in valid_sheets:
+        # Retrieve input main xml template from the subfolder templates
         maintemplate = os.path.join(cd, 'templates', sheet + '.xml')
         worksheet = wb[sheet]
+        # Check manadatory fields are present in the input excel
         logger.info("Checking mandatory fields...")
         if not check_all_green(worksheet, args.l):
             logger.error("Mandatory fields in excel file are not all filed. Exiting...")
             exit()
+        # Declare data empty dictionary that is dumped in json format
         data = {}
         json_data = json.dumps(data)
+        # Iterate over template list declared at the beginning of the tool
         for cond, template, rep, subrep, sublevel, subtemplate in template_list:
+            # Get template type according to settings of rep, subrep, sublevel, subtemplate
             tetype = get_type(cond, template, rep, subrep, sublevel, subtemplate)
             pf = {}
             pfc = 0
@@ -531,6 +575,9 @@ if __name__ == '__main__':
                                 except:
                                     pf[pfnum] = {}
                             pf[pfnum][str(fieldcode)] = str(clean_field_val(fieldvalue, fieldcode))
+                            if (cond == 'DOI') and (fieldcode == 'MI_D_C'):
+                                if ('MI_D' not in pf[pfnum]) or (pf[pfnum]['MI_D'] is None):
+                                    pf[pfnum] = {}
                             done=1
                             added_to_multilevel.append(str(fieldcode))
                         elif not ("%%"+str(fieldcode)[:4]+"%%" in chain.from_iterable(template_list)) and not ("%%"+str(fieldcode)[:3]+"%%" in chain.from_iterable(template_list)) and not ("%%"+str(fieldcode)[:2]+"%%" in chain.from_iterable(template_list)) and not str(fieldcode) in added_to_multilevel:
@@ -608,6 +655,7 @@ if __name__ == '__main__':
                                         v = ["%"+subtemplate+"%", j[subtemplate.replace("%","")]]
                                         if not v in l:
                                             l.append(v)
+
                         if subrep.replace("%","") in j[i][h] and j[i][h][subrep.replace("%","")] != 'None':
                             s_template = s_template + multiple_replacer(subtemplate, l)
                         elif tetype == 5:
@@ -628,6 +676,8 @@ if __name__ == '__main__':
                         else:
                             if len(l) > 0:
                                 n_template = n_template + multiple_replacer(template, l)
+                            elif (len(l) == 0) and (rep == '%%MI_D%%'):
+                                n_template = '<gmd:identifier />'
                     if subrep != "" and subtemplate != "" and sublevel == "":
                         nfiledata = nfiledata.replace(subrep, s_template)
                     if o_template != "":
@@ -636,6 +686,7 @@ if __name__ == '__main__':
             if not (i in chain.from_iterable(template_list)) and not (j[i] == 'None' or j[i] == "#N/A"):
                 nfiledata = nfiledata.replace('%%' + str(i) + '%%', str(j[i]))
         # Clean all unused %%LOCATORS%% in template
+        nfiledata = re.sub('%%MI_D%%', '<gmd:identifier />', nfiledata)
         nfiledata = re.sub('%%.*?%%', '', nfiledata)
         nfiledata = nfiledata.replace("<gco:Date></gco:Date>", "")
         nfiledata = nfiledata.replace("> &gt; ", ">  &gt; ").replace("  &gt; ", "").replace(" &gt; <", "<").replace(" &gt;<", "<")
