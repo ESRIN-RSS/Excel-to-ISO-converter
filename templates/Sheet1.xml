@@ -93,7 +93,7 @@
       </gmd:CI_Date>
      </gmd:date>
      <!-- Metadata Identification DOI if (MI_D) present, empty otherwise -->
-     <gmd:identifier>%%MI_D%%</gmd:identifier>
+     %%MI_D%%
     </gmd:CI_Citation>
    </gmd:citation>
    <!-- Metadata Identification abstract (MI_UD)-->
