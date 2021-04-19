@@ -264,16 +264,6 @@ rf_template = "     <gmd:onLine xlink:type=\"simple\" xlink:href=\"xpointer(%%D_
 #               "</gmd:RS_Identifier>\n"
 mid_template = "<gmd:identifier>\n" \
             "<gmd:MD_Identifier>\n" \
-            "    <gmd:code>\n" \
-            "        <gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
-            "    </gmd:code>\n" \
-            "    <gmd:codeSpace>\n" \
-            "        <gco:CharacterString>https://doi.org</gco:CharacterString>\n" \
-            "    </gmd:codeSpace>\n" \
-            "    <gmd:description>\n" \
-            "        <!-- NASA Earth Data requirement is that this string must contain \"DOI\"; no such requirement for ESA -->\n" \
-            "        <gco:CharacterString>%%MI_D_C%%</gco:CharacterString>\n" \
-            "    </gmd:description>\n" \
             "    <gmd:authority>\n" \
             "        <gmd:CI_Citation>\n" \
             "            <gmd:title/>\n" \
@@ -290,6 +280,16 @@ mid_template = "<gmd:identifier>\n" \
             "            </gmd:citedResponsibleParty>\n" \
             "        </gmd:CI_Citation>\n" \
             "    </gmd:authority>\n" \
+            "    <gmd:code>\n" \
+            "        <gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
+            "    </gmd:code>\n" \
+            "    <gmd:codeSpace>\n" \
+            "        <gco:CharacterString>https://doi.org</gco:CharacterString>\n" \
+            "    </gmd:codeSpace>\n" \
+            "    <gmd:description>\n" \
+            "        <!-- NASA Earth Data requirement is that this string must contain \"DOI\"; no such requirement for ESA -->\n" \
+            "        <gco:CharacterString>%%MI_D_C%%</gco:CharacterString>\n" \
+            "    </gmd:description>\n" \
             "</gmd:MD_Identifier>\n" \
         "</gmd:identifier>\n" \
 
