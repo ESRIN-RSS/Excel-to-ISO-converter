@@ -719,7 +719,7 @@ if __name__ == '__main__':
         #             nfiledata = nfiledata.replace(maintag, newmaintag)
         # Pretty print xml output
         if args.p:
-            xml = xml.dom.minidom.parseString(nfiledata.replace("\n",""))
+            xml = xml.dom.minidom.parseString(nfiledata.replace("\n"," "))
             nfiledata = xml.toprettyxml()
             # bs = BeautifulSoup(nfiledata, 'xml')
             # nfiledata = bs.prettify()
