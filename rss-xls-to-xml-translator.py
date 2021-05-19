@@ -254,14 +254,17 @@ rf_template = "     <gmd:onLine xlink:type=\"simple\" xlink:href=\"xpointer(%%D_
               "       </gmd:function>\n" \
               "      </gmd:CI_OnlineResource>\n" \
               "     </gmd:onLine>\n"
-# mid_template = "<gmd:RS_Identifier>\n" \
-#               "<gmd:code>\n" \
-#               "<gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
-#               "</gmd:code>\n" \
-#               "<gmd:codeSpace>\n" \
-#               "<gco:CharacterString>http://doi.org</gco:CharacterString>\n" \
-#               "</gmd:codeSpace>\n" \
-#               "</gmd:RS_Identifier>\n"
+mid_template = "<gmd:identifier>\n" \
+               "<gmd:RS_Identifier>\n" \
+               "<gmd:code>\n" \
+               "<gco:CharacterString>%%MI_D%%</gco:CharacterString>\n" \
+               "</gmd:code>\n" \
+               "<gmd:codeSpace>\n" \
+               "<gco:CharacterString>http://doi.org</gco:CharacterString>\n" \
+               "</gmd:codeSpace>\n" \
+               "</gmd:RS_Identifier>\n" \
+               "</gmd:identifier>\n"
+"""
 mid_template = "<gmd:identifier>\n" \
             "<gmd:MD_Identifier>\n" \
             "    <gmd:authority>\n" \
@@ -292,6 +295,7 @@ mid_template = "<gmd:identifier>\n" \
             "    </gmd:description>\n" \
             "</gmd:MD_Identifier>\n" \
         "</gmd:identifier>\n" \
+"""
 
 nins_template = "     <gmd:keyword>\n" \
                  "      <gmx:Anchor xlink:href=\"%%I_E_T_U%%\">%%I_E_T%%</gmx:Anchor>\n" \
